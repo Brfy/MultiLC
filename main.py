@@ -84,7 +84,7 @@ class App(ctk.CTk):
             if (colc1 == 4):
                 colc1 = 0
                 col = 20
-                rowa += 240
+                rowa += 300
 
             self.makeStartButt = ctk.CTkButton(self,
                                          text=s,
@@ -143,7 +143,7 @@ class App(ctk.CTk):
             if (colc1 == 4):
                 colc1 = 0
                 col = 20
-                rowa += 240
+                rowa += 300
 
             self.makeStartButt = ctk.CTkButton(self,
                                          text=s,
@@ -194,7 +194,7 @@ class App(ctk.CTk):
             if (colc1 == 4):
                 colc1 = 0
                 col = 20
-                rowa += 240
+                rowa += 300
 
             self.makeStartButt = ctk.CTkButton(self,
                                          text=s,
