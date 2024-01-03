@@ -1,0 +1,1 @@
+pyinstaller --noconfirm --onedir --windowed --onefile --noconsole --add-data "./customtkinter;customtkinter/" "main.py"
