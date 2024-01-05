@@ -3,12 +3,11 @@
 # application using the customtkinter module
  
 import customtkinter as ctk
-import tkinter as tk
+import tkinter #as tk
 from tkinter import simpledialog
 import promptlib
 from pathlib import Path
 import shutil
-import time
 import os
  
 # Basic parameters and initializations
@@ -110,9 +109,13 @@ class App(ctk.CTk):
         path = os.path.realpath(the_path)
         os.startfile(path)
 
+
+    def destroy(self):
+       self.quit()
+
     def deleteInstancePrompt(self):
         del_instance_name = simpledialog.askstring("Input", "Enter the name of the instance you wish to delete:")
-        if del_instance_name is None:
+        if del_instance_name is None or del_instance_name == "":
             # If the user clicked "Cancel" or closed the dialog box, don't create a new instance
             return
         
@@ -163,7 +166,7 @@ class App(ctk.CTk):
 
     def newInstancePrompt(self):
         new_instance_name = simpledialog.askstring("Input", "Enter a name for the new instance:")
-        if new_instance_name is None:
+        if new_instance_name is None or new_instance_name == "":
             # If the user clicked "Cancel" or closed the dialog box, don't create a new instance
             return
 
@@ -258,7 +261,7 @@ class App(ctk.CTk):
 
         # Run the .exe file
         os.startfile(exe_path)
-        self.destroy()
+        self.quit()
         
     
 
@@ -270,7 +273,8 @@ class pickDirClass(ctk.CTk):
 
 
         self.title("MultiLC")
-        #self.geometry(f"{appWidth}x{appHeight}")
+
+        self.resizable(False,False)
 
         self.nameLabel = ctk.CTkLabel(self,
                                       text="No directory selected. Would you like to pick one now?")
@@ -279,17 +283,18 @@ class pickDirClass(ctk.CTk):
                             sticky="ew")
  
         # Generate Button
-        self.makeInstanceButt = ctk.CTkButton(self,
+        self.pickFolderButt = ctk.CTkButton(self,
                                          text="Yes",
                                          command=self.pickDir,
                                          height=70, width=200)
-        self.makeInstanceButt.grid(row=5, column=1,
+        self.pickFolderButt.grid(row=5, column=1,
                                         columnspan=2, padx=20, 
                                         pady=20, sticky="ew")
  
     # This function is used to insert the 
     # details entered by users into the textbox
     def pickDir(self):
+        global Lethal_Company_Directory
         prompter = promptlib.Files()
 
         dir = prompter.dir()
@@ -300,14 +305,23 @@ class pickDirClass(ctk.CTk):
         contents_real = os.path.isdir(dir)
         if contents_real == True:
             Lethal_Company_Directory = dir
+            self.pickFolderButt.destroy()
             self.nameLabel = ctk.CTkLabel(self,
-                                      text="You may now close this window.")
+                                      text="Close this window and re-open the program.")
             self.nameLabel.grid(row=0, column=0,
                                 padx=20, pady=20,
                                 sticky="ew")
+            #self.quit()
+            self.destroy()
+            app = App()
+            app.mainloop()
+            app.quit()
+            #self.destroy()
 
 
 if __name__ == "__main__":
+
+    open('lc_loc.txt', 'a').close()
 
 
     with open('lc_loc.txt') as f:
