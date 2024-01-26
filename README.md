@@ -12,10 +12,20 @@ You will have to select your Lethal Company folder, close the program, and then 
 A folder named "Instances" is created within your BepInEx folder in Lethal Company. 
 Whenever you launch an instance, your plugins folder is cleared and the contents of the instance are copied over.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Brfy/MultiLC/main/multiLCinstances.png" alt="MultiLC interface"/>
+</p>
+
 ### Building
-If you want to build the launcher yourself, you will need to install pyinstaller as well as customtkinter.
+If you want to build the launcher yourself, you will need pyinstaller, customtkinter, shutil, and pathlib.
 
 ### Acknowledgements
+<p>
 Built using Python
+</p>
+<p>
 Packaged using PyInstaller
+</p>
+<p>
 GUI created using CustomTkinter
+</p>
